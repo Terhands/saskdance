@@ -2,10 +2,24 @@
 <html>
 <head>
     <title>{% block title %}SaskDance{% endblock %}</title>
+    {% include 'style-includes/header.html' %}
+    <link rel="stylesheet" href="/static/css/theme.css">
 </head>
 <body>
-{% block content %}
-:(
-{% endblock %}
+    <div class="navbar navbar-default" role="navigation">
+        <div class="navbar-container">
+            <div class="navbar-header"><a href="#dances">Dances</a></div>
+            <div class="navbar-header"><a href="#events">Events</a></div>
+            <div class="navbar-header"><a href="#lessons">Lessons</a></div>
+            <div class="navbar-header"><a href="#workshops">Workshops</a></div>
+            <div class="navbar-header"><a href="#news">News</a></div>
+        </div>
+    </div>
+    <h1 class="title">SaskDance</h1>
+    <div class="container-fluid">
+        {% block content %}{% endblock %}
+    </div>
 </body>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 </html>
