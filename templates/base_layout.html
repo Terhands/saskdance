@@ -7,6 +7,10 @@
 </head>
 <body>
     <div class="navbar navbar-default" role="navigation">
+        {% if role == 'admin' %}
+            <div class="navbar-header"><h4>Dashboard</h4></div>
+            <div class="logout "><a href="#logout">Sign Out</a></div>
+        {% else %}
         <div class="navbar-container">
             <div class="navbar-header"><a href="#dances">Dances</a></div>
             <div class="navbar-header"><a href="#events">Events</a></div>
@@ -14,10 +18,13 @@
             <div class="navbar-header"><a href="#workshops">Workshops</a></div>
             <div class="navbar-header"><a href="#news">News</a></div>
         </div>
+        {% endif %}
     </div>
     <h1 class="title">SaskDance</h1>
-    <div class="container-fluid">
-        {% block content %}{% endblock %}
+    <div class="container-fluid-shadow">
+        <div class="container-fluid">
+            {% block content %}{% endblock %}
+        </div>
     </div>
 </body>
 

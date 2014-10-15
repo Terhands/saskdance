@@ -8,11 +8,28 @@
     vertical-align: middle;
 }
 
-.navbar a {
+.navbar .navbar-header {
     color: #ffffff;
     line-height: 50px;
     vertical-align: middle;
     padding-left: 15px;
+}
+
+.navbar .navbar-header h4 {
+    padding-left: 35px;
+    margin-bottom: 10px;
+}
+
+.navbar a {
+    color: #ffffff;
+}
+
+.logout {
+    line-height: 50px;
+    font-size: 14px;
+    vertical-align: middle;
+    float:right;
+    padding-right: 50px;
 }
 
 .navbar a:hover, .navbar a:active {
@@ -30,12 +47,24 @@
     margin-right: 50px;
 }
 
+.white-text {
+    color: #ffffff
+}
+
 .container-fluid {
-    margin-left: 50px;
-    margin-right: 50px;
+    margin-left: 0px;
+    margin-right: 2px;
     background: #dbc5e8;
     padding-left: 15px;
     padding-right: 15px;
+}
+
+.container-fluid-shadow {
+    margin-left: 50px;
+    margin-right: 48px;
+    /*padding-bottom: 2px;*/
+    padding-top:2px;
+    background: #300142;
 }
 
 .title {

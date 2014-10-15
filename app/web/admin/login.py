@@ -1,14 +1,23 @@
 from app.web import BaseHandler
+from webapp2_extras.appengine.auth.models import User
 
 
 class LoginHandler(BaseHandler):
 
     def get(self):
+        if len(User.query().fetch()) == 0:
+            bootstrap('test')
+
         self.render_response('admin/login.html')
 
     def post(self):
-        if self.request.get('password') == 'test':
-            # need to actually get the user (need to have some kind of user bootstrap to set the UserModel
+        password = self.request.get('password')
+        try:
+            self.auth.get_user_by_password('giddingsl', password)
             self.redirect(self.uri_for('admin-dashboard'))
-        else:
+        except Exception:
             self.render_response('admin/login.html', params={'error': 'Wrong Password!'})
+
+
+def bootstrap(password):
+    User.create_user('giddingsl', password_raw=password)
