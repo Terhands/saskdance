@@ -51,9 +51,10 @@
     color: #ffffff
 }
 
-.container-fluid {
+.container-fluid-shadow .container-fluid {
     margin-left: 0px;
     margin-right: 2px;
+    margin-bottom:0px;
     background: #dbc5e8;
     padding-left: 15px;
     padding-right: 15px;
@@ -62,7 +63,6 @@
 .container-fluid-shadow {
     margin-left: 50px;
     margin-right: 48px;
-    /*padding-bottom: 2px;*/
     padding-top:2px;
     background: #300142;
 }
