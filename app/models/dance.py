@@ -11,6 +11,7 @@ class DanceModel(ndb.Model):
     location = ndb.StringProperty(indexed=False, required=True)
 
     title = ndb.StringProperty(indexed=False, required=False)
+    band = ndb.StringProperty(indexed=False, required=False)
     description = ndb.StringProperty(indexed=False, required=False)
     cost = ndb.StringProperty(indexed=False, required=False)
     contact_email = ndb.StringProperty(indexed=False, required=False)
@@ -19,13 +20,13 @@ class DanceModel(ndb.Model):
 
     @classmethod
     def get_dances_ordered_by_start_time(cls):
-        return cls.query().order(-cls.event_start).fetch()
+        return cls.query().order(cls.event_start).fetch()
 
     @classmethod
     def get_dances_in(cls, year, month):
         return cls.query().filter(cls.start_year == year)\
                           .filter(cls.start_month == month)\
-                          .order(-cls.event_start)\
+                          .order(cls.event_start)\
                           .fetch()
 
 

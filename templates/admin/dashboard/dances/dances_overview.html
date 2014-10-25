@@ -25,6 +25,43 @@
                             <button type="submit" class="btn btn-success">Add Dance</button>
                         </form>
                         <h2>Dances</h2>
+                        {% for dance in months[current_month].dances %}
+                <hr/>
+                {% if dance.band %}
+                <div class="row">
+                    <div class="col-lg-3">
+                        <p><b>Entertainment</b></p>
+                    </div>
+                    <div class="col-lg-3">
+                        <p>{{ dance.band }}</p>
+                    </div>
+                </div>
+                {% endif %}
+                <div class="row">
+                    <div class="col-lg-3">
+                        <p><b>Where</b></p>
+                    </div>
+                    <div class="col-lg-3">
+                        <p>{{ dance.location }}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <p><b>When</b></p>
+                    </div>
+                    <div class="col-lg-3">
+                        <p>{{ dance.date }}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <p><b>Price</b></p>
+                    </div>
+                    <div class="col-lg-3">
+                        <p>{{ dance.price }}</p>
+                    </div>
+                </div>
+                {% endfor %}
                     </div>
                 </div>
             </div>

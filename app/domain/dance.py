@@ -13,6 +13,7 @@ class DanceConstants(object):
     EMAIL = 'contact_email'
     PHONE = 'contact_phone'
     PHOTO = 'photo_path'
+    BAND = 'band'
 
 
 def create_dance(start_time, location, **kwargs):
@@ -26,7 +27,8 @@ def create_dance(start_time, location, **kwargs):
                            cost=kwargs.get(DanceConstants.COST),
                            contact_email=kwargs.get(DanceConstants.EMAIL),
                            contact_phone=kwargs.get(DanceConstants.PHONE),
-                           photo_path=kwargs.get(DanceConstants.PHOTO))
+                           photo_path=kwargs.get(DanceConstants.PHOTO),
+                           band=kwargs.get(DanceConstants.BAND))
         dance.put()
         return dance
     except Exception, e:

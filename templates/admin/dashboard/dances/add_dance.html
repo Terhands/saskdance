@@ -2,7 +2,7 @@
 
 {% block content %}
     <h2>New Dance</h2>
-    <form method="put">
+    <form method="post" action="/dashboard/dances/add">
         <div class="row">
             <div class="col-sm-6">
                 <label class="control-label">Title</label>
@@ -16,6 +16,12 @@
             </div>
         </div>
         <div class="row">
+            <div class="col-sm-6">
+                <label class="control-label">Entertainment</label>
+                <input name="band" type="text" class="form-control"/>
+            </div>
+        </div>
+        <div class="row">
             <div class="col-sm-2">
                 <label class="control-label">Date</label>
                 <input name="start_date" type="text" class="form-control" placeholder="YYYY/MM/DD"/>
@@ -26,7 +32,7 @@
             </div>
             <div class="col-sm-2">
                 <label class="control-label">End Time (24 hour)</label>
-                <input name="start_date" type="text" class="form-control" placeholder="ex: 15:00"/>
+                <input name="end_time" type="text" class="form-control" placeholder="ex: 15:00"/>
             </div>
         </div>
         <div class="row">
