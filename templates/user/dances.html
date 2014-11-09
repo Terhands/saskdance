@@ -4,14 +4,16 @@
         <div id="wrapper">
             <div id="sidebar-wrapper">
                 <ul class="sidebar-nav">
+                    {% set count = 0 %}
                     {% for m in months %}
                     <li class="sidebar-brand">
                         {% if m.month == months[current_month].month %}
-                        <a class="active" href="">{{m.month}}</a>
+                        <a class="active" href="/dances?month={{count}}">{{m.month}}</a>
                         {% else %}
-                        <a class="inactive" href="">{{m.month}}</a>
+                        <a class="inactive" href="/dances?month={{count}}">{{m.month}}</a>
                         {% endif %}
                     </li>
+                    {% set count = count + 1 %}
                     {% endfor %}
                 </ul>
             </div>
@@ -20,8 +22,60 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-9">
-                        <br />
                         <h2>Dances</h2>
+                        {% for dance in months[current_month].dances %}
+                        <hr/>
+                        {% if dance.title %}
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <h4>{{ dance.title }}</h4>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% if dance.description %}
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <p>{{ dance.description }}</p>
+                            </div>
+                        </div>
+                        {% endif %}
+                        <br />
+                        {% if dance.band %}
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <p><b>Entertainment</b></p>
+                            </div>
+                            <div class="col-lg-3">
+                                <p>{{ dance.band }}</p>
+                            </div>
+                        </div>
+                        {% endif %}
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <p><b>Where</b></p>
+                            </div>
+                            <div class="col-lg-3">
+                                <p>{{ dance.location }}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <p><b>When</b></p>
+                            </div>
+                            <div class="col-lg-3">
+                                <p>{{ dance.date }}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <p><b>Price</b></p>
+                            </div>
+                            <div class="col-lg-3">
+                                <p>{{ dance.price }}</p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        <br />
                     </div>
                 </div>
             </div>

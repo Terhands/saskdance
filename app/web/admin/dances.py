@@ -25,11 +25,16 @@ class AdminDancesHandler(AdminBaseHandler):
             now = datetime.utcnow()
             if (d.start_year == now.year and d.start_month >= now.month) or (d.start_year == now.year - 1 and d.start_month < now.month):
                 month_dances[d.start_month - 1].append({
+                    'id': d.key.id(),
+                    'title': d.title,
+                    'description': d.description,
                     'band': d.band,
                     'location': d.location,
                     'date': datetime.strftime(d.event_start, "%b %d, %Y %I:%M%p"),
                     'price': d.cost
                 })
+
+        current_month = int(self.request.get('month')) if self.request.get('month') else 0
 
         # TODO get dances in month sections
         # TODO build months programmatically - current first, then ordered
@@ -45,7 +50,7 @@ class AdminDancesHandler(AdminBaseHandler):
                            {'month': 'october', 'dances': month_dances[9]},
                            {'month': 'november', 'dances': month_dances[10]},
                            {'month': 'december', 'dances': month_dances[11]}],
-                'current_month': 11}
+                'current_month': current_month}
 
         self.render_response('admin/dashboard/dances/dances_overview.html', params=data)
 
