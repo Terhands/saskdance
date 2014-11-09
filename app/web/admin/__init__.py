@@ -18,3 +18,7 @@ class AdminBaseHandler(BaseHandler):
             super(AdminBaseHandler, self).dispatch()
         finally:
             self.session_store.save_sessions(self.response)
+
+    def render_response(self, _template, params={}):
+        params.update({'role': 'admin'})
+        super(AdminBaseHandler, self).render_response(_template, params=params)
