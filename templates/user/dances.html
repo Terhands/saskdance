@@ -25,10 +25,13 @@
                         <h2>Dances</h2>
                         {% for dance in months[current_month].dances %}
                         <hr/>
-                        {% if dance.title %}
+                        {% if dance.band %}
                         <div class="row">
                             <div class="col-lg-3">
-                                <h4>{{ dance.title }}</h4>
+                                <p><b>Entertainment</b></p>
+                            </div>
+                            <div class="col-lg-3">
+                                <p>{{ dance.band }}</p>
                             </div>
                         </div>
                         {% endif %}
@@ -40,16 +43,6 @@
                         </div>
                         {% endif %}
                         <br />
-                        {% if dance.band %}
-                        <div class="row">
-                            <div class="col-lg-3">
-                                <p><b>Entertainment</b></p>
-                            </div>
-                            <div class="col-lg-3">
-                                <p>{{ dance.band }}</p>
-                            </div>
-                        </div>
-                        {% endif %}
                         <div class="row">
                             <div class="col-lg-3">
                                 <p><b>Where</b></p>

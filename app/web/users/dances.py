@@ -17,9 +17,9 @@ class DancesHandler(BaseHandler):
 
         for d in dances:
             now = datetime.utcnow()
-            if (d.start_year == now.year and d.start_month >= now.month) or (d.start_year == now.year - 1 and d.start_month < now.month):
+            if (d.start_year == now.year and d.start_month >= now.month) or \
+                    (d.start_year == now.year + 1 and d.start_month < now.month):
                 month_dances[d.start_month - 1].append({
-                    'title': d.title,
                     'description': d.description,
                     'band': d.band,
                     'location': d.location,
