@@ -1,4 +1,4 @@
-from app.web import BaseHandler
+from app.web import build_error_message, BaseHandler
 from webapp2_extras.appengine.auth.models import User
 
 
@@ -16,7 +16,8 @@ class LoginHandler(BaseHandler):
             self.auth.get_user_by_password('giddingsl', password)
             self.redirect(self.uri_for('admin-dashboard'))
         except Exception:
-            self.render_response('admin/login.html', params={'error': 'Wrong Password!'})
+            self.render_response('admin/login.html',
+                                 params=build_error_message('Wrong Password!'))
 
 
 def bootstrap(password):

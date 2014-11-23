@@ -54,3 +54,7 @@ class BaseApiHandler(webapp2.RequestHandler):
     def render_response(self, result):
         self.response.headers['Content-Type'] = 'application/json'
         self.response.write(json.dumps(result))
+
+
+def build_error_message(message):
+    return {'error': message}

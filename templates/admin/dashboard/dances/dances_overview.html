@@ -1,10 +1,101 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
+{% extends 'base_layout.html' %}
 
-</body>
-</html>
+{% block content %}
+        <div id="wrapper">
+            <div id="sidebar-wrapper">
+                <ul class="sidebar-nav">
+                    {% set count = 0 %}
+                    {% for m in months %}
+                    <li class="sidebar-brand">
+                        {% if m.month == months[current_month].month %}
+                        <a class="active" href="/dashboard/dances?month={{count}}">{{m.month}}</a>
+                        {% else %}
+                        <a class="inactive" href="/dashboard/dances?month={{count}}">{{m.month}}</a>
+                        {% endif %}
+                    </li>
+                    {% set count = count + 1 %}
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-9">
+                        <div class="row">
+                            <div class="col-lg-10">
+                                <h2>Dances</h2>
+                            </div>
+                            <div class="col-lg-1">
+                                <br />
+                                <form method="get" action="/dashboard/dances/add">
+                                    <button type="submit" class="btn btn-success">Add Dance</button>
+                                </form>
+                            </div>
+                        </div>
+                        {% for dance in months[current_month].dances %}
+                        <hr/>
+                        <div class="row">
+                            <div class="col-lg-10">
+                                {% if dance.title %}
+                                <div class="row">
+                                    <div class="col-lg-3">
+                                        <h4>{{ dance.title }}</h4>
+                                    </div>
+                                </div>
+                                {% endif %}
+                                {% if dance.description %}
+                                <div class="row">
+                                    <div class="col-lg-3">
+                                        <p>{{ dance.description }}</p>
+                                    </div>
+                                </div>
+                                {% endif %}
+                                <br />
+                                {% if dance.band %}
+                                <div class="row">
+                                    <div class="col-lg-3">
+                                        <p><b>Entertainment</b></p>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <p>{{ dance.band }}</p>
+                                    </div>
+                                </div>
+                                {% endif %}
+                                <div class="row">
+                                    <div class="col-lg-3">
+                                        <p><b>Where</b></p>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <p>{{ dance.location }}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-3">
+                                        <p><b>When</b></p>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <p>{{ dance.date }}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-3">
+                                        <p><b>Price</b></p>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <p>{{ dance.price }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-2">
+                                <br />
+                                <!-- add in edit option -->
+                                <a href="/dashboard/dances/edit?id={{ dance.id }}" class="btn btn-info">Edit Dance</a>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}
