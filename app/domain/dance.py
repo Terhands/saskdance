@@ -16,19 +16,27 @@ class DanceConstants(object):
     BAND = 'band'
 
 
-def create_dance(start_time, location, **kwargs):
+def build_dance(start_time, location, **kwargs):
+    dance = DanceModel(event_start=start_time,
+                       location=location,
+                       event_end=kwargs.get(DanceConstants.END_TIME),
+                       title=kwargs.get(DanceConstants.TITLE),
+                       description=kwargs.get(DanceConstants.DESCRIPTION),
+                       cost=kwargs.get(DanceConstants.COST),
+                       contact_email=kwargs.get(DanceConstants.EMAIL),
+                       contact_phone=kwargs.get(DanceConstants.PHONE),
+                       photo_path=kwargs.get(DanceConstants.PHOTO),
+                       band=kwargs.get(DanceConstants.BAND))
 
+    dance_id = kwargs.get('id')
+    if dance_id:
+        dance.key = DanceModel.build_key(dance_id)
+
+    return dance
+
+
+def save_dance(dance):
     try:
-        dance = DanceModel(event_start=start_time,
-                           location=location,
-                           event_end=kwargs.get(DanceConstants.END_TIME),
-                           title=kwargs.get(DanceConstants.TITLE),
-                           description=kwargs.get(DanceConstants.DESCRIPTION),
-                           cost=kwargs.get(DanceConstants.COST),
-                           contact_email=kwargs.get(DanceConstants.EMAIL),
-                           contact_phone=kwargs.get(DanceConstants.PHONE),
-                           photo_path=kwargs.get(DanceConstants.PHOTO),
-                           band=kwargs.get(DanceConstants.BAND))
         dance.put()
         return dance
     except Exception, e:

@@ -29,5 +29,6 @@ class DanceModel(ndb.Model):
                           .order(cls.event_start)\
                           .fetch()
 
-
-
+    @staticmethod
+    def build_key(key_id):
+        return ndb.Key(DanceModel, key_id)
