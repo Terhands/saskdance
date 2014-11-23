@@ -19,11 +19,11 @@ class AdminDancesHandler(AdminBaseHandler):
         month_dances = [[], [], [], [], [], [], [], [], [], [], [], []]
 
         for d in dances:
-            # now = datetime.utcnow()
-            # if (d.start_year == now.year and d.start_month >= now.month) or (d.start_year == now.year - 1 and d.start_month < now.month):
+            now = datetime.utcnow()
+            if (d.start_year == now.year and d.start_month >= now.month) or \
+                    (d.start_year == now.year + 1 and d.start_month < now.month):
                 month_dances[d.start_month - 1].append({
                     'id': d.key.id(),
-                    'title': d.title,
                     'description': d.description,
                     'band': d.band,
                     'location': d.location,
@@ -102,7 +102,6 @@ class EditDancesHandler(AdminBaseHandler):
 
 def create_dance_dict(request):
 
-    title = request.get('title')
     description = request.get('description')
 
     start_date = None
@@ -126,7 +125,6 @@ def create_dance_dict(request):
 
     dance_dict = {
         DanceConstants.END_TIME: end_date,
-        DanceConstants.TITLE: title,
         DanceConstants.DESCRIPTION: description,
         DanceConstants.COST: cost,
         DanceConstants.EMAIL: email,
