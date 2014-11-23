@@ -10,7 +10,6 @@ class DanceModel(ndb.Model):
     event_end = ndb.DateTimeProperty(indexed=False, required=False)
     location = ndb.StringProperty(indexed=False, required=True)
 
-    title = ndb.StringProperty(indexed=False, required=False)
     band = ndb.StringProperty(indexed=False, required=False)
     description = ndb.StringProperty(indexed=False, required=False)
     cost = ndb.StringProperty(indexed=False, required=False)
@@ -29,5 +28,6 @@ class DanceModel(ndb.Model):
                           .order(cls.event_start)\
                           .fetch()
 
-
-
+    @staticmethod
+    def build_key(key_id):
+        return ndb.Key(DanceModel, key_id)

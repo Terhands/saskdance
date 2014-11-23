@@ -1,10 +1,69 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
+{% extends 'base_layout.html' %}
 
-</body>
-</html>
+{% block content %}
+    <h2>Edit Dance</h2>
+    <form method="post" action="/dashboard/dances/edit?id={{ id }}">
+        <div class="row">
+            <div class="col-sm-6">
+                <label class="control-label">Entertainment</label>
+                <input name="band" type="text" class="form-control" value="{{ band }}"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <label class="control-label">Description</label>
+                <input name="description" type="text" class="form-control" value="{{ description }}"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2">
+                <label class="control-label">Date</label>
+                <input name="start_date" type="text" class="form-control" placeholder="YYYY/MM/DD" value="{{ start_date }}"/>
+            </div>
+            <div class="col-sm-2">
+                <label class="control-label">Start Time (24 hour)</label>
+                <input name="start_time" type="text" class="form-control" placeholder="ex: 14:30" value="{{ start_time }}"/>
+            </div>
+            <div class="col-sm-2">
+                <label class="control-label">End Time (24 hour)</label>
+                <input name="end_time" type="text" class="form-control" placeholder="ex: 15:00" value="{{ end_time }}"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <label class="control-label">Location</label>
+                <input name="location" type="text" class="form-control" value="{{ location }}"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <label class="control-label">Price</label>
+                <input name="cost" type="text" class="form-control" value="{{ cost }}"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3">
+                <label class="control-label">Contact (email)</label>
+                <input name="email" type="text" class="form-control" value="{{ contact_email }}"/>
+            </div>
+            <div class="col-sm-3">
+                <label class="control-label">Contact (phone)</label>
+                <input name="phone" type="text" class="form-control" value="{{ contact_phone }}"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <label class="control-label file-upload">Event Photo</label>
+                <input type="file"
+                       class="file-hide"
+                       name="event_photo"
+                       accept="image/*"
+                       onclick="this.value=null"/>
+            </div>
+        </div>
+        <br />
+        <button type="submit" class="btn btn-success">Save</button>
+        <br />
+        <br />
+    </form>
+{% endblock %}

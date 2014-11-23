@@ -12,6 +12,7 @@ _routes = [
     Route('/dashboard', handler=dashboard.DashboardHandler, name='admin-dashboard'),
     Route('/dashboard/dances', handler=dances.AdminDancesHandler, name='admin-dances'),
     Route('/dashboard/dances/add', handler=dances.AddDancesHandler, name='admin-add-dance'),
+    Route('/dashboard/dances/edit', handler=dances.EditDancesHandler, name='admin-edit-dance'),
 
     Route('/dances', handler=user_dances.DancesHandler, name='dances'),
     Route('/', handler=index.IndexHandler)
