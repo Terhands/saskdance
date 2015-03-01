@@ -4,9 +4,10 @@
     <title>{% block title %}SaskDance{% endblock %}</title>
     {% include 'style-includes/header.html' %}
     <link rel="stylesheet" href="/static/css/theme.css">
-    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
-    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
+    <script src="/static/js/jquery2.1.3.min.js"></script>
+    <script src="/static/js/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="/static/css/jquery-ui.min.css"/>
+    {% block header %}{% endblock %}
 </head>
 <body>
     <div class="navbar navbar-default" role="navigation">
@@ -16,7 +17,7 @@
         {% else %}
         <div class="navbar-container">
             <div class="navbar-header"><a href="/dances">Dances</a></div>
-            <div class="navbar-header"><a href="#events">Events</a></div>
+            <div class="navbar-header"><a href="/events">Events</a></div>
             <div class="navbar-header"><a href="#lessons">Lessons</a></div>
             <div class="navbar-header"><a href="#workshops">Workshops</a></div>
             <div class="navbar-header"><a href="#news">News</a></div>
@@ -31,6 +32,6 @@
     </div>
     <br />
 </body>
-
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+{% block footer %}{% endblock %}
 </html>

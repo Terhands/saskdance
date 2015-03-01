@@ -1,0 +1,95 @@
+{% extends 'base_layout.html' %}
+{% block content %}
+<div class="row">
+    <div class="col-lg-9">
+        <div class="row">
+            <div class="col-lg-10">
+                <h2>Special Events</h2>
+            </div>
+            <div class="col-lg-1">
+                <br />
+                <form method="get" action="/dashboard/events/add">
+                    <button type="submit" class="btn btn-success">Add Event</button>
+                </form>
+            </div>
+        </div>
+        {% for event in events %}
+        <hr/>
+        <div class="row">
+            <div class="col-lg-10">
+                {% if event.band %}
+                <div class="row">
+                    <div class="col-lg-3">
+                        <p><b>Entertainment</b></p>
+                    </div>
+                    <div class="col-lg-3">
+                        <p>{{ event.band }}</p>
+                    </div>
+                </div>
+                {% endif %}
+                {% if event.name %}
+                <div class="row">
+                    <div class="col-lg-3">
+                        <p>{{ event.name }}</p>
+                    </div>
+                </div>
+                {% endif %}
+                {% if event.description %}
+                <div class="row">
+                    <div class="col-lg-3">
+                        <p>{{ event.description }}</p>
+                    </div>
+                </div>
+                {% endif %}
+                <br />
+                <div class="row">
+                    <div class="col-lg-3">
+                        <p><b>Where</b></p>
+                    </div>
+                    <div class="col-lg-3">
+                        <p>{{ event.location }}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <p><b>When</b></p>
+                    </div>
+                    <div class="col-lg-3">
+                        <p>{{ event.event_time }}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <p><b>Price</b></p>
+                    </div>
+                    <div class="col-lg-3">
+                        <p>{{ event.cost }}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <p><b>Phone</b></p>
+                    </div>
+                    <div class="col-lg-3">
+                        <p>{{ event.contact_phone }}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <p><b>Email</b></p>
+                    </div>
+                    <div class="col-lg-3">
+                        <p>{{ event.contact_email }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <br />
+                <!-- add in edit option -->
+                <a href="/dashboard/events/edit?id={{ event.key.id() }}" class="btn btn-info">Edit Event</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
