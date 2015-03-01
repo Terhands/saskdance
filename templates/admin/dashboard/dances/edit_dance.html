@@ -1,4 +1,4 @@
-{% extends 'base_layout.html' %}
+{% extends 'admin/dashboard/datetime_base.html' %}
 
 {% block content %}
     <h2>Edit Dance</h2>
@@ -18,15 +18,15 @@
         <div class="row">
             <div class="col-sm-2">
                 <label class="control-label">Date</label>
-                <input name="start_date" type="text" class="form-control" placeholder="YYYY/MM/DD" value="{{ start_date }}"/>
+                <input id="dace-date" name="start_date" type="text" class="form-control" value="{{ start_date }}"/>
             </div>
             <div class="col-sm-2">
                 <label class="control-label">Start Time (24 hour)</label>
-                <input name="start_time" type="text" class="form-control" placeholder="ex: 14:30" value="{{ start_time }}"/>
+                <input name="start_time" type="text" class="form-control timepicker" value="{{ start_time }}"/>
             </div>
             <div class="col-sm-2">
                 <label class="control-label">End Time (24 hour)</label>
-                <input name="end_time" type="text" class="form-control" placeholder="ex: 15:00" value="{{ end_time }}"/>
+                <input name="end_time" type="text" class="form-control timepicker" value="{{ end_time }}"/>
             </div>
         </div>
         <div class="row">
@@ -66,4 +66,15 @@
         <br />
         <br />
     </form>
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript">
+
+  $( document ).ready(function() {
+    $('#dance-date').datepicker();
+    $('.timepicker').timepicker();
+  });
+
+</script>
 {% endblock %}

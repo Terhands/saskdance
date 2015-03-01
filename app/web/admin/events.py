@@ -41,6 +41,8 @@ class EditEventsHandler(AdminBaseHandler):
         event_model = EventModel.build_key(event_id).get()
         event_dict = event_model.to_dict()
         event_dict['id'] = event_id
+        event_dict['event_date'] = event_model.event_datetime.strftime('%m/%d/%Y')
+        event_dict['event_time'] = event_model.event_datetime.strftime('%H:%M %p')
         self.render_response('admin/dashboard/events/edit_event.html', params=event_dict)
 
     def post(self):
@@ -61,7 +63,7 @@ class EditEventsHandler(AdminBaseHandler):
 
 def create_event_dict(request):
 
-    event_time = request.get('event_time')
+    event_time = request.get('event_date') + ' ' + request.get('event_time')
     name = request.get('name')
     description = request.get('description')
     cost = request.get('cost')

@@ -78,10 +78,10 @@ class EditDancesHandler(AdminBaseHandler):
         dance_model = DanceModel.build_key(dance_id).get()
         dance_dict = dance_model.to_dict()
         dance_dict['id'] = dance_id
-        dance_dict['start_date'] = dance_model.event_start.strftime("%Y/%m/%d")
-        dance_dict['start_time'] = dance_model.event_start.strftime("%H:%M")
+        dance_dict['start_date'] = dance_model.event_start.strftime("%m/%d/%Y")
+        dance_dict['start_time'] = dance_model.event_start.strftime("%H:%M %p")
         if dance_model.event_end:
-            dance_dict['end_time'] = dance_model.event_end.strftime("%H:%M")
+            dance_dict['end_time'] = dance_model.event_end.strftime("%H:%M %p")
         self.render_response('admin/dashboard/dances/edit_dance.html', params=dance_dict)
 
     def post(self):
@@ -106,15 +106,15 @@ def create_dance_dict(request):
 
     start_date = None
     if request.get('start_date') and request.get('start_time'):
-        start_date = datetime.strptime(request.get('start_date') + ":" + request.get('start_time'),
-                                       "%Y/%m/%d:%H:%M")
+        start_date = datetime.strptime(request.get('start_date') + ' ' + request.get('start_time'),
+                                       '%m/%d/%Y %H:%M %p')
     elif request.get('start_date'):
-        start_date = datetime.strptime(request.get('start_date'), "%Y/%m/%d")
+        start_date = datetime.strptime(request.get('start_date'), '%m/%d/%Y')
 
     end_date = None
     if start_date and request.get('end_time'):
-        end_date = datetime.strptime(request.get('start_date') + ":" + request.get('end_time'),
-                                     "%Y/%m/%d:%H:%M")
+        end_date = datetime.strptime(request.get('start_date') + ' ' + request.get('end_time'),
+                                     '%m/%d/%Y %H:%M %p')
 
     cost = request.get('cost')
     email = request.get('email')

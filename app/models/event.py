@@ -3,7 +3,7 @@ from google.appengine.ext import ndb
 
 class EventModel(ndb.Model):
 
-    event_time = ndb.StringProperty(indexed=False, required=True)
+    event_datetime = ndb.DateTimeProperty(indexed=True, required=True)
     location = ndb.StringProperty(indexed=False, required=True)
 
     band = ndb.StringProperty(indexed=False, required=False)
@@ -16,7 +16,7 @@ class EventModel(ndb.Model):
 
     @classmethod
     def get_events(cls):
-        return cls.query().order().fetch()
+        return cls.query().order(cls.event_datetime).fetch()
 
     @staticmethod
     def build_key(key_id):

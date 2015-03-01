@@ -1,4 +1,4 @@
-{% extends 'base_layout.html' %}
+{% extends 'admin/dashboard/datetime_base.html' %}
 
 {% block content %}
     <h2>New Event</h2>
@@ -22,9 +22,13 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-6">
+            <div class="col-sm-3">
                 <label class="control-label">Date</label>
-                <input name="event_time" type="text" class="form-control" placeholder="Event Date"/>
+                <input id="event-date" name="event_date" type="text" class="form-control"/>
+            </div>
+            <div class="col-sm-3">
+                <label class="control-label">Time</label>
+                <input name="event_time" type="text" class="form-control timepicker"/>
             </div>
         </div>
         <div class="row">
@@ -64,4 +68,15 @@
         <br />
         <br />
     </form>
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript">
+
+  $( document ).ready(function() {
+    $('#event-date').datepicker();
+    $('.timepicker').timepicker();
+  });
+
+</script>
 {% endblock %}

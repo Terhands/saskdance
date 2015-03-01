@@ -1,4 +1,5 @@
 import logging
+import datetime
 from app.models.event import EventModel
 
 
@@ -17,7 +18,10 @@ class EventConstants(object):
 
 
 def build_event(**kwargs):
-    event = EventModel(event_time=kwargs.get(EventConstants.EVENT_TIME),
+
+    event_datetime = datetime.datetime.strptime(kwargs.get(EventConstants.EVENT_TIME), "%m/%d/%Y %H:%M %p")
+
+    event = EventModel(event_datetime=event_datetime,
                        location=kwargs.get(EventConstants.LOCATION),
                        name=kwargs.get(EventConstants.NAME),
                        description=kwargs.get(EventConstants.DESCRIPTION),
